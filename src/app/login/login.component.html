@@ -1,0 +1,29 @@
+
+<div id="login">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin m-3">
+                <div class="card-body">
+                    <h5 class="card-title text-center">
+                        Iniciar sesión
+                    </h5>
+                    <form (ngSubmit)="Login()" class="form-signin">
+                        <div class="form-label-group mb-3">
+                            <input id="email" type="email" class="form-control p-1" placeholder="Correo electronico"  />
+                        </div>
+                        <div class="form-label-group mb-3">
+                            <input type="password" id="password" class="form-control p-1" placeholder="Contrase&ntilde;a" />
+                        </div>
+                        <br>
+                        <a routerLink='/signup' routerLinkActive='active'>¿Aún no te has registrado?</a>
+                        <div class="text-center">
+                            <button class="btn btn-primary text-uppercase" type="submit">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
