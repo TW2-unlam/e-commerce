@@ -1,42 +1,27 @@
-<h1 class="text-center">Juegos</h1>
-<div class="container mt-3">
-    <div class = "row">
-      <div class="col">
+<div class="container custom-container-2">
+  <!-- Show it when there is no product -->
+  <div class="no-data text-center" *ngIf="Product.length == 0">
+    <p>There is no game added yet!</p>
+  </div>
 
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top imagenes" src="https://cdn2.unrealengine.com/metaimage1-1920x1080-abb60090deaf.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">nombre</h5>
-              <p class="card-text">precio</p>
-              <a routerLink='/productDetails' routerLinkActive='active'>Ver detalles</a>
-              <p ><i class="fas fa-cart-plus"></i></p>
-            </div>
-          </div>
+  <div class="games">
+    <ng-container *ngFor="let product of Product">
+      <div class="game" (click)="openProductDetails(product._id)">
+        <div class="game-thumb-container">
+          <img
+            *ngIf="product.background_image"
+            src="{{ product.background_image }}"
+            alt="thumbnail"
+            class="game-thumbnail"
+          />
+          <p *ngIf="!product.background_image">No image</p>
+        </div>
+        <div class="game-description">
+          <p class="game-name">{{ product.name }}</p>
+          <p class="game-released">Lanzamiento: {{ product.released }}</p>
+          <p class="game-released">Rating: {{ product.rating }}</p>
+        </div>
       </div>
-      <div class="col">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top imagenes" src="https://i1.wp.com/hipertextual.com/wp-content/uploads/2021/04/gta-v-android.jpg?fit=1200%2C800&ssl=1" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">nombre</h5>
-              <p class="card-text">precio</p>
-              <a routerLink='/productDetails' routerLinkActive='active'>Ver detalles</a>
-              <p ><i class="fas fa-cart-plus"></i></p>
-            </div>
-          </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top imagenes" src="https://play-lh.googleusercontent.com/JRd05pyBH41qjgsJuWduRJpDeZG0Hnb0yjf2nWqO7VaGKL10-G5UIygxED-WNOc3pg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">nombre</h5>
-              <p class="card-text">precio</p>
-              <a routerLink='/productDetails' routerLinkActive='active'>Ver detalles</a>
-             <p ><i class="fas fa-cart-plus"></i></p>
-            </div>
-          </div>
-      </div>
- </div>
-
-</div> 
-  
-    
+    </ng-container>
+  </div>
+</div>

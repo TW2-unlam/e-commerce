@@ -1,16 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { RestApiService } from '../service/rest-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  Product: any = [];
 
-  constructor() { }
+  constructor(public restApi: RestApiService, private router: Router) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.loadProducts();
   }
 
+  // Get game list
+  loadProducts() {
+    return this.restApi.getEmployees().subscribe((data: {}) => {
+      this.Product = data;
+    });
+  }
+
+  openProductDetails(id: string): void {
+    this.router.navigate(['details', id]);
+  }
+
+  // Delete game
+  // deleteEmployee(id) {
+  //   if (window.confirm('Are you sure, you want to delete?')){
+  //     this.restApi.deleteProduct(id).subscribe(data => {
+  //       this.loadProduct()
+  //     })
+  //   }
 }
