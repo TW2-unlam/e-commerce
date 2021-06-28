@@ -10,7 +10,7 @@ import { CartComponent } from './cart/cart.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,17 +20,11 @@ import { FormsModule } from '@angular/forms';
     ProductDetailsComponent,
     CartComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-    
-  ],
- 
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
