@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   }
 
   openProductDetails(id: string): void {
-    this.router.navigate(['details', id]);
+    this.router.navigate(['/productDetails', id]);
   }
 
   // Delete game

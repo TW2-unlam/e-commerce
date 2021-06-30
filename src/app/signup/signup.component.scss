@@ -1,0 +1,48 @@
+.background{
+    background-color:lightgray;
+}
+
+.registrarse{
+    text-decoration: none;
+    color:#26252D;
+}
+#login .card-signin {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+    #login .card-signin .card-title {
+        margin-bottom: 2rem;
+        font-weight: 400;
+        font-size: 1.5rem;
+    }
+
+    #login .card-signin .card-body {
+        padding: 2rem;
+    }
+
+#login .form-signin {
+    width: 100%;
+}
+
+
+
+#login .form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+    #login .form-label-group input {
+        border: 0;
+        border-radius: 0;
+        border-bottom: 1px #aaadb3 solid;
+    }
+
+#login .btn-primary {
+    border-radius: 5px !important;
+    border-color: var(--gray-color);
+    background-color: var(--darkgray-color);
+    height: 40px;
+    width: 90px;
+}
