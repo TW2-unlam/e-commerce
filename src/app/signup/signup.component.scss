@@ -1,15 +1,12 @@
 .background{
-    background-color:lightgray;
+    background-color: #02000e;
+    color:white;
 }
 
-.registrarse{
-    text-decoration: none;
-    color:#26252D;
-}
 #login .card-signin {
     border: 0;
     border-radius: 1rem;
-    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2.5rem 2rem 0 rgba(0, 0, 0, 0.1);
 }
 
     #login .card-signin .card-title {
@@ -37,6 +34,8 @@
         border: 0;
         border-radius: 0;
         border-bottom: 1px #aaadb3 solid;
+    
+        
     }
 
 #login .btn-primary {
