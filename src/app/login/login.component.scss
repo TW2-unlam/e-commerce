@@ -1,10 +1,16 @@
 .background{
-  background-color: #02000e;  
+  background-color:#02000e;  
   color:white;
 }
 .registrarse{
     text-decoration: none;
-    color:#7e7d83;
+    color:#8e86b4;
+}
+.fondoInput{
+
+    background-color: transparent;
+    border: solid rgb(54, 54, 54);
+  color:white;
 }
 #login .card-signin {
     border: 0;
