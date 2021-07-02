@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .body-pd {
-    background-color: #02000ef5;
+    background-color: black;
 }
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

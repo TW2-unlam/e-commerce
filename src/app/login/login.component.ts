@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../service/auth-service.service';
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     protected router: Router,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private modal: NgbModal
   ) {}
 
   ngOnInit(): void {
