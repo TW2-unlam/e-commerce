@@ -29,39 +29,39 @@ export class RestApiService {
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  // // HttpClient API get() method => Fetch employee
-  // getEmployee(id): Observable<Employee> {
-  //   return this.http
-  //     .get<Employee>(this.apiURL + '/employees/' + id)
-  //     .pipe(retry(1), catchError(this.handleError));
-  // }
+  // HttpClient API get() method => Fetch product/id
+  getProduct(id: any): Observable<Product> {
+    return this.http
+      .get<Product>(`${apiUrl}/api/products` + id)
+      .pipe(retry(1), catchError(this.handleError));
+  }
 
-  // // HttpClient API post() method => Create employee
-  // createEmployee(employee): Observable<Employee> {
+  // // HttpClient API post() method => Create product
+  // createProduct(product): Observable<Product> {
   //   return this.http
-  //     .post<Employee>(
-  //       this.apiURL + '/employees',
-  //       JSON.stringify(employee),
+  //     .post<Product>(
+  //       this.apiURL + '/products',
+  //       JSON.stringify(product),
   //       this.httpOptions
   //     )
   //     .pipe(retry(1), catchError(this.handleError));
   // }
 
-  // // HttpClient API put() method => Update employee
-  // updateEmployee(id, employee): Observable<Employee> {
+  // // HttpClient API put() method => Update product
+  // updateProduct(id, product): Observable<Product> {
   //   return this.http
-  //     .put<Employee>(
-  //       this.apiURL + '/employees/' + id,
-  //       JSON.stringify(employee),
+  //     .put<Product>(
+  //       this.apiURL + '/products/' + id,
+  //       JSON.stringify(product),
   //       this.httpOptions
   //     )
   //     .pipe(retry(1), catchError(this.handleError));
   // }
 
-  // // HttpClient API delete() method => Delete employee
-  // deleteEmployee(id) {
+  // // HttpClient API delete() method => Delete product
+  // deleteProduct(id) {
   //   return this.http
-  //     .delete<Employee>(this.apiURL + '/employees/' + id, this.httpOptions)
+  //     .delete<Product>(this.apiURL + '/products/' + id, this.httpOptions)
   //     .pipe(retry(1), catchError(this.handleError));
   // }
 

@@ -27,12 +27,12 @@ export class LoginComponent implements OnInit {
   }
 
   Login() {
-    // this.router.navigate(['/']);
     if (this.formGroup.valid) {
       this.authService.login(this.formGroup.value).subscribe((result) => {
-        if (result.success) {
-          console.log(result);
-          alert(result.message);
+        if (result.jwt) {
+          localStorage.setItem('loggedUser', result);
+          alert('Login successfully');
+          this.router.navigate(['/']);
         } else {
           alert(result.message);
         }
