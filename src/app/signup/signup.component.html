@@ -4,26 +4,24 @@
       <div class="card card-signin m-3 background">
         <div class="card-body">
           <h5 class="card-title text-center">Sign Up</h5>
-          <form class="form-signin">
+          <form (ngSubmit)="SignUp()"
+          class="form-signin"
+          [formGroup]="formGroup">
             <div class="form-label-group mb-3">
               <input
                 type="email"
                 class="form-control p-1 fondoInput"
                 placeholder="Email"
+                formControlName="email"
               />
             </div>
-            <div class="form-label-group mb-3">
-              <input
-                type="password"
-                class="form-control p-1 fondoInput"
-                placeholder="Password"
-              />
-            </div>
+            
             <div class="form-label-group mb-3">
               <input
                 type="text"
                 class="form-control p-1 fondoInput"
                 placeholder="Name"
+                formControlName="name"
               />
             </div>
             <div class="form-label-group mb-3">
@@ -31,6 +29,7 @@
                 type="text"
                 class="form-control p-1 fondoInput"
                 placeholder="Surname"
+                formControlName="family_name"
               />
             </div>
             <div class="form-label-group mb-3">
@@ -38,9 +37,17 @@
                 type="text"
                 class="form-control p-1 fondoInput"
                 placeholder="Address"
+                formControlName="address"
               />
             </div>
-
+            <div class="form-label-group mb-3">
+              <input
+                type="password"
+                class="form-control p-1 fondoInput"
+                placeholder="Password"
+                formControlName="password"
+              />
+            </div>
             <div class="text-center">
               <button class="btn btn-dark text-uppercase mt-3" type="submit">
                 Sign Up
