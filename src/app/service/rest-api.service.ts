@@ -3,14 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from '../model/product';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { apiUrl } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RestApiService {
-  // Define API
-  apiURL = 'http://localhost:3000';
-
   constructor(private http: HttpClient) {}
 
   /*========================================
@@ -27,7 +25,7 @@ export class RestApiService {
   // HttpClient API get() method => Fetch product list
   getProducts(): Observable<Product> {
     return this.http
-      .get<Product>(this.apiURL + '/api/products')
+      .get<Product>(`${apiUrl}/api/products`)
       .pipe(retry(1), catchError(this.handleError));
   }
 
