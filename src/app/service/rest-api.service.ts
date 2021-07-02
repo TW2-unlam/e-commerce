@@ -3,14 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from '../model/product';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { apiUrl } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RestApiService {
-  // Define API
-  apiURL = 'http://localhost:3000';
-
   constructor(private http: HttpClient) {}
 
   /*========================================
@@ -27,45 +25,16 @@ export class RestApiService {
   // HttpClient API get() method => Fetch product list
   getProducts(): Observable<Product> {
     return this.http
-      .get<Product>(this.apiURL + '/api/products')
+      .get<Product>(`${apiUrl}/api/products`)
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  // // HttpClient API get() method => Fetch employee
-  // getEmployee(id): Observable<Employee> {
-  //   return this.http
-  //     .get<Employee>(this.apiURL + '/employees/' + id)
-  //     .pipe(retry(1), catchError(this.handleError));
-  // }
-
-  // // HttpClient API post() method => Create employee
-  // createEmployee(employee): Observable<Employee> {
-  //   return this.http
-  //     .post<Employee>(
-  //       this.apiURL + '/employees',
-  //       JSON.stringify(employee),
-  //       this.httpOptions
-  //     )
-  //     .pipe(retry(1), catchError(this.handleError));
-  // }
-
-  // // HttpClient API put() method => Update employee
-  // updateEmployee(id, employee): Observable<Employee> {
-  //   return this.http
-  //     .put<Employee>(
-  //       this.apiURL + '/employees/' + id,
-  //       JSON.stringify(employee),
-  //       this.httpOptions
-  //     )
-  //     .pipe(retry(1), catchError(this.handleError));
-  // }
-
-  // // HttpClient API delete() method => Delete employee
-  // deleteEmployee(id) {
-  //   return this.http
-  //     .delete<Employee>(this.apiURL + '/employees/' + id, this.httpOptions)
-  //     .pipe(retry(1), catchError(this.handleError));
-  // }
+  // HttpClient API get() method => Fetch product/id
+  getProduct(id: String): Observable<Product> {
+    return this.http
+      .get<any>(`${apiUrl}/api/products/` + id)
+      .pipe(retry(1), catchError(this.handleError));
+  }
 
   // Error handling
   handleError(error: {

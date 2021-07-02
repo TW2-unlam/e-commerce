@@ -1,21 +1,30 @@
-
-<div id="login" class="mt-2">
-  <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-          <div class="card card-signin m-3">
-              <div class="card-body background" style="width:auto">
-
-    <img class="card-img-top" src="https://cdn2.unrealengine.com/metaimage1-1920x1080-abb60090deaf.png" alt="Card image cap">
-    
-     <h2 class="card-title mt-3">Name</h2>
-      <p class="card-text">Descrition</p>
-      <p class="card-text">Clasification</p>
-      <p class="card-text">Price</p>
-      <button class="btn btn-dark">Add to Cart <i class="fas fa-cart-plus"></i></button>
-      <a routerLink="/buy" routerLinkActive="active" class="btn btn-dark m-3">BUY</a>
+<div class="details">
+  <div class="game-banner">
+    <img class="game-banner-img" src="{{ gameDetail.background_image }}" />
+    alt="background image" />
+  </div>
+  <div class="game-content">
+    <div class="details-wrapper">
+      <div class="game-header">
+        <h1 class="game-header-title">{{ gameDetail.name }}</h1>
+        <h2 class="game-header-release-date">
+          Release: {{ gameDetail.released | date }}
+        </h2>
+        <p class="game-header-genres">
+          <span *ngFor="let genre of gameDetail.genres; let last = last"
+            >{{ genre.name }}<span *ngIf="!last">, </span></span
+          >
+        </p>
+        <p class="game-header-genres">
+          <br /><br /><br />{{ gameDetail.description }}
+        </p>
+        <button class="btn btn-dark">
+          Add to Cart <i class="fas fa-cart-plus"></i>
+        </button>
+        <a routerLink="/buy" routerLinkActive="active" class="btn btn-dark m-3"
+          >BUY</a
+        >
+      </div>
     </div>
-  
-</div>
-</div>
-</div>
+  </div>
 </div>
