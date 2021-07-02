@@ -8,19 +8,18 @@ import { LoginComponent } from './login/login.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { SignupComponent } from './signup/signup.component';
 
-
 const routes: Routes = [
-{path :'', component : HomeComponent},
-{path :'home', component : HomeComponent},
-{path :'login', component : LoginComponent},
-{path : 'signup', component : SignupComponent},
-{path : 'productDetails', component : ProductDetailsComponent},
-{path : 'cart', component : CartComponent},
-{path : 'buy', component : BuyComponent}
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'productDetails/:id', component: ProductDetailsComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'buy', component: BuyComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

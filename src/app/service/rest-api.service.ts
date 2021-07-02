@@ -30,40 +30,11 @@ export class RestApiService {
   }
 
   // HttpClient API get() method => Fetch product/id
-  getProduct(id: any): Observable<Product> {
+  getProduct(id: String): Observable<Product> {
     return this.http
-      .get<Product>(`${apiUrl}/api/products` + id)
+      .get<any>(`${apiUrl}/api/products/` + id)
       .pipe(retry(1), catchError(this.handleError));
   }
-
-  // // HttpClient API post() method => Create product
-  // createProduct(product): Observable<Product> {
-  //   return this.http
-  //     .post<Product>(
-  //       this.apiURL + '/products',
-  //       JSON.stringify(product),
-  //       this.httpOptions
-  //     )
-  //     .pipe(retry(1), catchError(this.handleError));
-  // }
-
-  // // HttpClient API put() method => Update product
-  // updateProduct(id, product): Observable<Product> {
-  //   return this.http
-  //     .put<Product>(
-  //       this.apiURL + '/products/' + id,
-  //       JSON.stringify(product),
-  //       this.httpOptions
-  //     )
-  //     .pipe(retry(1), catchError(this.handleError));
-  // }
-
-  // // HttpClient API delete() method => Delete product
-  // deleteProduct(id) {
-  //   return this.http
-  //     .delete<Product>(this.apiURL + '/products/' + id, this.httpOptions)
-  //     .pipe(retry(1), catchError(this.handleError));
-  // }
 
   // Error handling
   handleError(error: {
