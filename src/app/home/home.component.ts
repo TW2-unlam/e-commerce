@@ -26,12 +26,4 @@ export class HomeComponent implements OnInit {
   openProductDetails(id: string): void {
     this.router.navigate(['/productDetails', id]);
   }
-
-  // Delete game
-  // deleteEmployee(id) {
-  //   if (window.confirm('Are you sure, you want to delete?')){
-  //     this.restApi.deleteProduct(id).subscribe(data => {
-  //       this.loadProduct()
-  //     })
-  //   }
 }

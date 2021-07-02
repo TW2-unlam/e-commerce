@@ -79,6 +79,16 @@
     }
   }
 
+  &-name {
+    color: #fff;
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
   &-content {
     text-align: center;
     position: relative;

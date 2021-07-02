@@ -45,14 +45,14 @@ p{
 .game {
   width: 280px;
   margin: 10px;
-  height: 330px;
+  height: 400px;
   overflow: hidden;
   border-radius: 5px;
   background-color: #02000e;
   box-shadow: 6px 5px 10px 2px rgb(21 12 73 / 20%);
   transition-duration: 0.3s;
   cursor: pointer;
-  
+
   &:hover {
     box-shadow: 4px 3px 11px 6px rgb(21 12 73 / 100%);
     transform: translateY(-3px);
@@ -76,11 +76,11 @@ p{
   }
 
   &-description {
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 157px;
+    height: 220px;
   }
 
   &-name {

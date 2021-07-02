@@ -6,4 +6,6 @@ export class Product {
   background_image: string | undefined;
   rating: number | undefined;
   rating_top: number | undefined;
+  description: string | undefined;
+  price: any | undefined;
 }
