@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
 
   // Get game list
   loadProducts() {
-    return this.restApi.getEmployees().subscribe((data: {}) => {
+    return this.restApi.getProducts().subscribe((data: {}) => {
       this.Product = data;
     });
   }

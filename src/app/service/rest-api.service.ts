@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Product } from '../service/product';
+import { Product } from '../model/product';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
@@ -24,8 +24,8 @@ export class RestApiService {
     }),
   };
 
-  // HttpClient API get() method => Fetch employees list
-  getEmployees(): Observable<Product> {
+  // HttpClient API get() method => Fetch product list
+  getProducts(): Observable<Product> {
     return this.http
       .get<Product>(this.apiURL + '/api/products')
       .pipe(retry(1), catchError(this.handleError));
