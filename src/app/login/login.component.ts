@@ -41,6 +41,10 @@ export class LoginComponent implements OnInit {
         this.toastr.info(message, 'Info');
         break;
       }
+      case 'show': {
+        this.toastr.show(message, 'Info');
+        break;
+      }
       default: {
         //statements;
         break;
@@ -73,7 +77,9 @@ export class LoginComponent implements OnInit {
           this.showSpinner(false);
           this.router.navigate(['/']);
         } else {
+          setTimeout(() => this.spinner.hide(), 5000);
           this.showToastNotification('error', result.message);
+          this.spinner.hide();
         }
       });
     }
