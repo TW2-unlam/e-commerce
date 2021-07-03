@@ -31,8 +31,10 @@ export class LoginComponent implements OnInit {
   Login() {
     if (this.formGroup.valid) {
       this.authService.login(this.formGroup.value).subscribe((result) => {
+        console.log('result');
+        console.log(result);
         if (result.jwt) {
-          localStorage.setItem('loggedUser', result);
+          localStorage.setItem('loggedUser', JSON.stringify(result));
           alert('Login successfully');
           this.router.navigate(['/']);
         } else {
