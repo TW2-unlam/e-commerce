@@ -21,11 +21,6 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.spinner.show();
-    // setTimeout(() => {
-    //   this.spinner.hide();
-    // }, 3000);
-
     if (localStorage.getItem('loggedUser')) {
       alert('Ya se encuentra logueado');
       this.router.navigate(['/']);
