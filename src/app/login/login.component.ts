@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../service/auth-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,12 +18,39 @@ export class LoginComponent implements OnInit {
     protected router: Router,
     private authService: AuthServiceService,
     private modal: NgbModal,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService
   ) {}
+
+  showToastNotification(type: string, message: string) {
+    // Passed to ToastrService.success/error/warning/info/show()
+    switch (type) {
+      case 'success': {
+        this.toastr.success(message, 'Success');
+        break;
+      }
+      case 'error': {
+        this.toastr.error(message, 'Error');
+        break;
+      }
+      case 'warning': {
+        this.toastr.warning(message, 'Warning');
+        break;
+      }
+      case 'info': {
+        this.toastr.info(message, 'Info');
+        break;
+      }
+      default: {
+        //statements;
+        break;
+      }
+    }
+  }
 
   ngOnInit(): void {
     if (localStorage.getItem('loggedUser')) {
-      alert('Ya se encuentra logueado');
+      this.showToastNotification('warning', 'Ya se encuentra logueado');
       this.router.navigate(['/']);
     }
     this.initForm();
@@ -41,11 +69,11 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.formGroup.value).subscribe((result) => {
         if (result.jwt) {
           localStorage.setItem('loggedUser', JSON.stringify(result));
-          alert('Login successfully');
+          this.showToastNotification('success', 'Login exitoso');
           this.showSpinner(false);
           this.router.navigate(['/']);
         } else {
-          alert(result.message);
+          this.showToastNotification('error', result.message);
         }
       });
     }

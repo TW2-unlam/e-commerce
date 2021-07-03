@@ -15,6 +15,7 @@ import { BuyComponent } from './buy/buy.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
 
   providers: [],
