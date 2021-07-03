@@ -124,13 +124,13 @@ a {
 
 .nav__link {
   position: relative;
-  // color: var(--white-color);
+  color: white;
   margin-bottom: 1.5rem;
   transition: 0.3s;
 }
 
 .nav__link:hover {
-  // color: var(--white-color);
+  color: var(--white-color);
   color: white;
 }
 
@@ -143,7 +143,7 @@ a {
 }
 
 .active {
-  // color: var(--white-color);
+  color: white;
 }
 
 .active::before {

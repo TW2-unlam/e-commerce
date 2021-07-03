@@ -27,8 +27,11 @@
           <span class="nav-link clWhite">Bienvenido {{ loggedUserName }}</span>
         </li>
 
-        <li class="nav-item" *ngIf="isLoggedIn">
-          <a class="nav-link" routerLink="/cart" routerLinkActive="active"
+        <li class="nav-item clWhite" *ngIf="isLoggedIn">
+          <a
+            class="nav-link clWhite"
+            routerLink="/cart"
+            routerLinkActive="active"
             ><i class="fas fa-shopping-cart"></i
           ></a>
         </li>
