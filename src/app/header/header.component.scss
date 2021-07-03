@@ -17,8 +17,12 @@
   box-sizing: border-box;
 }
 .logo {
-  width: 50px;
-  height: 50px;
+  margin-top: 10px;
+  width: 100px;
+  // height: 50px;
+}
+.logoName {
+  width: 240px;
 }
 .back {
   background-color: black;

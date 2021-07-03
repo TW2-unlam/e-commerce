@@ -18,6 +18,10 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('loggedUser')) {
+      alert('Ya se encuentra logueado');
+      this.router.navigate(['/']);
+    }
     this.initForm();
   }
 
@@ -31,8 +35,6 @@ export class LoginComponent implements OnInit {
   Login() {
     if (this.formGroup.valid) {
       this.authService.login(this.formGroup.value).subscribe((result) => {
-        console.log('result');
-        console.log(result);
         if (result.jwt) {
           localStorage.setItem('loggedUser', JSON.stringify(result));
           alert('Login successfully');
