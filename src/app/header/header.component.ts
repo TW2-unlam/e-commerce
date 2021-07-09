@@ -2,6 +2,7 @@ import { RecursiveAstVisitor } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-header',
@@ -9,14 +10,20 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(protected router: Router, private toastr: ToastrService) {}
+  constructor(
+    protected router: Router,
+    private toastr: ToastrService,
+    private data: DataService
+  ) {}
 
   loggedUserData: any = {};
   loggedUserName: string = '';
   isLoggedIn: boolean = false;
+  message: string = '';
 
   ngOnInit(): void {
     this.loggedUserName = this.getLoggedUserName();
+    this.data.currentMessage.subscribe((message) => (this.message = message));
   }
 
   getLoggedUserName() {

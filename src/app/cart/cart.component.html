@@ -1,51 +1,59 @@
 <div class="row carrito">
-    <div class="col-12 col-md-6 mt-3">
-       <div class="table-responsive">
-            <table class="table table-striped" style="width:100%">
-                <thead class="backg">
-                    <tr>
-                        <th scope="col" class="text-center">Image</th>
-                        <th scope="col" class="text-center">Name</th>
-                        <th scope="col" class="text-center">Description</th>
-                        <th scope="col" class="text-center">Price</th>
-                        <th scope="col" class="text-center">Remove</th>
-                    </tr>
-                </thead>
-                <tbody >
-                        <tr class="text-light">
-                            <td class="text-center">Image</td>
-                            <td class="text-center">Name</td>
-                            <td class="text-center">Description</td>
-                            <td class="text-center">Price</td>
-                            <td class="text-center"><a data-bs-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-times"></i></a></td>
-                           
-                        </tr>
-                        <tr class="text-light">
-                            <td class="text-center">Image</td>
-                            <td class="text-center">Name</td>
-                            <td class="text-center">Description</td>
-                            <td class="text-center">Price</td>
-                            <td class="text-center"><a data-bs-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-times"></i></a></td>
-                           
-                        </tr>
-                    
-                </tbody>
-            </table>
+  <div class="col-12 col-md-6 mt-3">
+    <div class="table-responsive">
+      <table class="table table-striped" style="width: 100%">
+        <thead class="backg">
+          <tr>
+            <th scope="col" class="text-center">Image</th>
+            <th scope="col" class="text-center">Name</th>
+            <th scope="col" class="text-center">Genres</th>
+            <th scope="col" class="text-center">Price</th>
+            <th scope="col" class="text-center">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let row of cartList">
+            <!-- <div class="game"> -->
+            <tr class="text-light">
+              <td class="text-center">
+                <img
+                  src="{{ row.background_image }}"
+                  alt="thumbnail"
+                  class="game-thumbnail"
+                />
+              </td>
+              <td class="text-center">{{ row.name }}</td>
+              <td class="text-center">
+                <ng-container *ngFor="let row of row.genres">
+                  <td class="text-center">{{ row.name }}<span>&nbsp;</span></td>
+                </ng-container>
+              </td>
+              <td class="text-center">{{ row.price }}</td>
+              <td class="text-center">
+                <a
+                  data-bs-toggle="tooltip"
+                  data-placement="top"
+                  title="Eliminar"
+                  ><i class="fas fa-times"></i
+                ></a>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-3 col-md-6 mt-3">
+    <form class="carro" method="post">
+      <div class="card background" style="width: 10rem">
+        <div class="card-body text-right">
+          <h5 class="card-title">My Cart</h5>
+          <p class="card-text">Total: $</p>
+          <a routerLink="/buy" routerLinkActive="active" class="btn btn-dark"
+            >BUY</a
+          >
         </div>
-    </div>
-            <div class="col-3 col-md-6 mt-3">
-             <form class="carro" method="post">
-              
-                <div class="card background" style="width: 10rem;">
-                    <div class="card-body text-right">
-                      <h5 class="card-title">My Cart</h5>
-                      <p class="card-text">Total: $</p>
-                      <a routerLink="/buy" routerLinkActive="active" class="btn btn-dark">BUY</a>
-                    </div>
-                  </div>
-             
-             </form>
-            
-        
-    </div>
-            </div>
+      </div>
+    </form>
+  </div>
+</div>

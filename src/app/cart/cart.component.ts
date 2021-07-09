@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,7 +9,14 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  constructor(protected router: Router, private toastr: ToastrService) {}
+  internalCartList: any = [];
+  cartList: any = [];
+
+  constructor(
+    protected router: Router,
+    private toastr: ToastrService,
+    private data: DataService
+  ) {}
 
   ngOnInit(): void {
     if (!localStorage.getItem('loggedUser')) {
@@ -18,6 +26,10 @@ export class CartComponent implements OnInit {
       );
       this.router.navigate(['/login']);
     }
+    this.data.cartList.subscribe((list) => (this.internalCartList = list));
+
+    // Refactor por pipe
+    this.cartList = Object.values(this.internalCartList);
   }
 
   showToastNotification(type: string, message: string) {
