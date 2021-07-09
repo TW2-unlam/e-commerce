@@ -19,11 +19,11 @@ export class HeaderComponent implements OnInit {
   loggedUserData: any = {};
   loggedUserName: string = '';
   isLoggedIn: boolean = false;
-  message: string = '';
+  cartCounter: any = 0;
 
   ngOnInit(): void {
     this.loggedUserName = this.getLoggedUserName();
-    this.data.currentMessage.subscribe((message) => (this.message = message));
+    this.data.cartCounter.subscribe((number) => (this.cartCounter = number));
   }
 
   getLoggedUserName() {

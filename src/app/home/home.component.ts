@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.loadProducts();
-    this.data.currentMessage.subscribe((message) => (this.message = message));
   }
 
   // Get game list
@@ -33,10 +32,6 @@ export class HomeComponent implements OnInit {
   openProductDetails(id: string): void {
     this.router.navigate(['/productDetails', id]);
   }
-
-  // changeMessage() {
-  //   this.data.changeMessage('Hola mundo');
-  // }
 
   addInternalItem(id: any) {
     const itemIndex = this.Product.findIndex((item: any) => item._id === id);
