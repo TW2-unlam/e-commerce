@@ -57,4 +57,9 @@ export class CartComponent implements OnInit {
       }
     }
   }
+
+  delInternalItem(item: any) {
+    this.data.removeItemFromCart(item);
+    this.ngOnInit();
+  }
 }

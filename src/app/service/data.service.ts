@@ -24,4 +24,16 @@ export class DataService {
   addToCart(item: any) {
     this.internalCartList.next([...this.internalCartList.getValue(), ...item]);
   }
+
+  removeItemFromCart(data: any) {
+    const cartarray: any[] = this.internalCartList.getValue();
+
+    cartarray.forEach((item, index) => {
+      if (item === data) {
+        cartarray.splice(index, 1);
+      }
+    });
+
+    this.internalCartList.next(cartarray);
+  }
 }
