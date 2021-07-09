@@ -37,4 +37,8 @@ export class HomeComponent implements OnInit {
     const itemIndex = this.Product.findIndex((item: any) => item._id === id);
     this.data.addToCart([this.Product[itemIndex]]);
   }
+
+  onEvent(event: any) {
+    event.stopPropagation();
+  }
 }

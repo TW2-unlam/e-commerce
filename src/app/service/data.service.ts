@@ -33,6 +33,5 @@ export class DataService {
 
   updateCartCounter() {
     this.cartCounterSource.next(this.internalCartList.getValue().length);
-    console.log(this.cartCounter);
   }
 }
