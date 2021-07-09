@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from '../service/rest-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-product-details',
@@ -14,7 +15,8 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     public restApi: RestApiService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private data: DataService
   ) {}
 
   ngOnInit() {
@@ -30,5 +32,9 @@ export class ProductDetailsComponent implements OnInit {
     return this.restApi.getProduct(id).subscribe((data: {}) => {
       this.gameDetail = data;
     });
+  }
+
+  addInternalItem(item: any) {
+    this.data.addToCart([item]);
   }
 }

@@ -19,7 +19,7 @@
           <br /><br /><br />{{ gameDetail.description }}
         </p>
         <p class="game-name">$ {{ gameDetail.price }}</p>
-        <button class="btn btn-dark">
+        <button class="btn btn-dark" (click)="addInternalItem(gameDetail)">
           Agregar al carrito <i class="fas fa-cart-plus"></i>
         </button>
       </div>
