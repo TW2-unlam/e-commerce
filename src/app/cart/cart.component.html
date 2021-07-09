@@ -4,11 +4,12 @@
       <table class="table table-striped" style="width: 100%">
         <thead class="backg">
           <tr>
-            <th scope="col" class="text-center">Image</th>
+            <th scope="col" class="text-center" style="width: 10rem">Image</th>
             <th scope="col" class="text-center">Name</th>
             <th scope="col" class="text-center">Genres</th>
             <th scope="col" class="text-center">Price</th>
-            <th scope="col" class="text-center">Remove</th>
+            <th scope="col" class="text-center">Quantity</th>
+            <th scope="col" class="text-center">#</th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +31,16 @@
               </td>
               <td class="text-center">{{ row.price }}</td>
               <td class="text-center">
+                <input
+                  type="number"
+                  name="{{ row.name }}"
+                  id="{{ row.name }}"
+                  style="width: 50px"
+                  [(ngModel)]="quantity"
+                  (change)="calculateTotalAmount()"
+                />
+              </td>
+              <td class="text-center">
                 <a
                   data-bs-toggle="tooltip"
                   data-placement="top"
@@ -49,7 +60,7 @@
       <div class="card background" style="width: 10rem">
         <div class="card-body text-right">
           <h5 class="card-title">My Cart</h5>
-          <p class="card-text">Total: $</p>
+          <p class="card-text">Total: ${{ totalAmount }}</p>
           <a routerLink="/buy" routerLinkActive="active" class="btn btn-dark"
             >BUY</a
           >

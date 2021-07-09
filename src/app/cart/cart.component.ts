@@ -11,6 +11,8 @@ import { DataService } from '../service/data.service';
 export class CartComponent implements OnInit {
   internalCartList: any = [];
   cartList: any = [];
+  totalAmount: any = 0;
+  quantity: number = 1;
 
   constructor(
     protected router: Router,
@@ -30,6 +32,7 @@ export class CartComponent implements OnInit {
 
     // Refactor por pipe
     this.cartList = Object.values(this.internalCartList);
+    this.calculateTotalAmount();
   }
 
   showToastNotification(type: string, message: string) {
@@ -61,5 +64,14 @@ export class CartComponent implements OnInit {
   delInternalItem(item: any) {
     this.data.removeItemFromCart(item);
     this.ngOnInit();
+  }
+
+  calculateTotalAmount() {
+    this.totalAmount = 0;
+    for (var i = 0; i < this.cartList.length; i++) {
+      this.totalAmount += parseFloat(this.cartList[i].price.toFixed(2));
+      console.log('this.quantity');
+      console.log(this.quantity);
+    }
   }
 }
