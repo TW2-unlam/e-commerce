@@ -37,7 +37,11 @@ import { ToastrModule } from 'ngx-toastr';
     NgbModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      progressBar: true,
+    }),
   ],
 
   providers: [],

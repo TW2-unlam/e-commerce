@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Result } from 'postcss';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -15,18 +16,27 @@ export class DataService {
   constructor() {}
 
   addToCart(item: any) {
+    let result = '';
     const cartArray: any[] = this.internalCartList.getValue();
     if (cartArray.length > 0) {
-      cartArray.forEach((actualItem) => {
+      let forceQuit = false;
+      for (let actualItem of cartArray) {
         if (actualItem._id === item[0]._id) {
           actualItem.quantity = actualItem.quantity + 1;
-        } else {
-          this.addToCartExecute(item);
+          result = 'Cantidad modificada';
+          forceQuit = true;
+          break;
         }
-      });
+      }
+      if (forceQuit) {
+        return result;
+      } else {
+        result = this.addToCartExecute(item);
+      }
     } else {
-      this.addToCartExecute(item);
+      result = this.addToCartExecute(item);
     }
+    return result;
   }
 
   addToCartExecute(item: any) {
@@ -38,6 +48,7 @@ export class DataService {
     ]);
 
     this.updateCartCounter();
+    return 'Producto agregado al carrito';
   }
 
   updateQty(id: any, qty: number) {
@@ -47,6 +58,7 @@ export class DataService {
         item.quantity = qty;
       }
     });
+    return 'Cantidad = ' + qty;
   }
 
   removeItemFromCart(data: any) {

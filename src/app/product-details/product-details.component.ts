@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestApiService } from '../service/rest-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../service/data.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-details',
@@ -16,7 +17,8 @@ export class ProductDetailsComponent implements OnInit {
     public restApi: RestApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private data: DataService
+    private data: DataService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -27,6 +29,36 @@ export class ProductDetailsComponent implements OnInit {
     this.loadProduct(this.gameId);
   }
 
+  showToastNotification(type: string, message: string) {
+    // Passed to ToastrService.success/error/warning/info/show()
+    switch (type) {
+      case 'success': {
+        this.toastr.success(message, 'Success');
+        break;
+      }
+      case 'error': {
+        this.toastr.error(message, 'Error');
+        break;
+      }
+      case 'warning': {
+        this.toastr.warning(message, 'Warning');
+        break;
+      }
+      case 'info': {
+        this.toastr.info(message, 'Info');
+        break;
+      }
+      case 'show': {
+        this.toastr.show(message, 'Info');
+        break;
+      }
+      default: {
+        //statements;
+        break;
+      }
+    }
+  }
+
   // Get game list
   loadProduct(id: String) {
     return this.restApi.getProduct(id).subscribe((data: {}) => {
@@ -35,6 +67,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addInternalItem(item: any) {
-    this.data.addToCart([item]);
+    const result = this.data.addToCart([item]);
+    this.showToastNotification('success', result);
   }
 }
