@@ -4,11 +4,12 @@
       <table class="table table-striped" style="width: 100%">
         <thead class="backg">
           <tr>
-            <th scope="col" class="text-center" style="width: 10rem">Image</th>
-            <th scope="col" class="text-center">Name</th>
-            <th scope="col" class="text-center">Genres</th>
-            <th scope="col" class="text-center">Price</th>
-            <th scope="col" class="text-center">Quantity</th>
+            <th scope="col" class="text-center" style="width: 10rem">Imagen</th>
+            <th scope="col" class="text-center">Nombre</th>
+            <th scope="col" class="text-center">Genero</th>
+            <th scope="col" class="text-center">Precio</th>
+            <th scope="col" class="text-center">Cantidad</th>
+            <th scope="col" class="text-center">Subtotal</th>
             <th scope="col" class="text-center">#</th>
           </tr>
         </thead>
@@ -39,6 +40,7 @@
                   (change)="updateQty(row._id, $event)"
                 />
               </td>
+              <td class="text-center">{{ row.price * row.quantity }}</td>
               <td class="text-center">
                 <a
                   data-bs-toggle="tooltip"
@@ -58,10 +60,9 @@
     <form class="carro" method="post">
       <div class="card background" style="width: 10rem">
         <div class="card-body text-right">
-          <h5 class="card-title">My Cart</h5>
-          <p class="card-text">Total: ${{ totalAmount }}</p>
+          <h3 class="card-text">Total: ${{ totalAmount }}</h3>
           <a routerLink="/buy" routerLinkActive="active" class="btn btn-dark"
-            >BUY</a
+            >Comprar</a
           >
         </div>
       </div>

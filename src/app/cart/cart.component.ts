@@ -68,12 +68,15 @@ export class CartComponent implements OnInit {
   updateQty(id: any, event: any) {
     let qty = event.target.value;
     this.data.updateQty(id, qty);
+    this.calculateTotalAmount();
   }
 
   calculateTotalAmount() {
     this.totalAmount = 0;
     for (var i = 0; i < this.cartList.length; i++) {
-      this.totalAmount += parseFloat(this.cartList[i].price.toFixed(2));
+      const price = parseFloat(this.cartList[i].price.toFixed(2));
+      const quantity = parseFloat(this.cartList[i].quantity);
+      this.totalAmount += price * quantity;
     }
   }
 }
