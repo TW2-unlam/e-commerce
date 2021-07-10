@@ -13,21 +13,52 @@ export class DataService {
   cartList = this.internalCartList.asObservable();
 
   constructor() {}
+
   addToCart(item: any) {
-    this.internalCartList.next([...this.internalCartList.getValue(), ...item]);
+    const cartArray: any[] = this.internalCartList.getValue();
+    if (cartArray.length > 0) {
+      cartArray.forEach((actualItem) => {
+        if (actualItem._id === item[0]._id) {
+          actualItem.quantity = actualItem.quantity + 1;
+        } else {
+          this.addToCartExecute(item);
+        }
+      });
+    } else {
+      this.addToCartExecute(item);
+    }
+  }
+
+  addToCartExecute(item: any) {
+    var internalList = [...item];
+    internalList[0].quantity = 1;
+    this.internalCartList.next([
+      ...this.internalCartList.getValue(),
+      ...internalList,
+    ]);
+
     this.updateCartCounter();
   }
 
-  removeItemFromCart(data: any) {
-    const cartarray: any[] = this.internalCartList.getValue();
+  updateQty(id: any, qty: number) {
+    const cartArray: any[] = this.internalCartList.getValue();
+    cartArray.forEach((item) => {
+      if (item._id === id) {
+        item.quantity = qty;
+      }
+    });
+  }
 
-    cartarray.forEach((item, index) => {
+  removeItemFromCart(data: any) {
+    const cartArray: any[] = this.internalCartList.getValue();
+
+    cartArray.forEach((item, index) => {
       if (item === data) {
-        cartarray.splice(index, 1);
+        cartArray.splice(index, 1);
       }
     });
 
-    this.internalCartList.next(cartarray);
+    this.internalCartList.next(cartArray);
     this.updateCartCounter();
   }
 

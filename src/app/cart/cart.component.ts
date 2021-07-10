@@ -12,7 +12,6 @@ export class CartComponent implements OnInit {
   internalCartList: any = [];
   cartList: any = [];
   totalAmount: any = 0;
-  quantity: number = 1;
 
   constructor(
     protected router: Router,
@@ -66,12 +65,15 @@ export class CartComponent implements OnInit {
     this.ngOnInit();
   }
 
+  updateQty(id: any, event: any) {
+    let qty = event.target.value;
+    this.data.updateQty(id, qty);
+  }
+
   calculateTotalAmount() {
     this.totalAmount = 0;
     for (var i = 0; i < this.cartList.length; i++) {
       this.totalAmount += parseFloat(this.cartList[i].price.toFixed(2));
-      console.log('this.quantity');
-      console.log(this.quantity);
     }
   }
 }

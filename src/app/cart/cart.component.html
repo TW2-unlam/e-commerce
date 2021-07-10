@@ -33,11 +33,10 @@
               <td class="text-center">
                 <input
                   type="number"
-                  name="{{ row.name }}"
-                  id="{{ row.name }}"
                   style="width: 50px"
-                  [(ngModel)]="quantity"
-                  (change)="calculateTotalAmount()"
+                  value="{{ row.quantity }}"
+                  min="0"
+                  (change)="updateQty(row._id, $event)"
                 />
               </td>
               <td class="text-center">
