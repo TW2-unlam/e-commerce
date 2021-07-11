@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   totalAmount: any = 0;
   isLogged: boolean = false;
   cartHasData: boolean = false;
+  cartCounter: any = 0;
 
   constructor(
     protected router: Router,
@@ -23,6 +24,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.data.isLogged.subscribe((state) => (this.isLogged = state));
+    this.data.cartCounter.subscribe((number) => (this.cartCounter = number));
     if (!this.isLogged) {
       this.showToastNotification(
         'info',
@@ -39,6 +41,7 @@ export class CartComponent implements OnInit {
     } else {
       this.cartHasData = false;
     }
+
     this.calculateTotalAmount();
   }
 
@@ -70,6 +73,7 @@ export class CartComponent implements OnInit {
 
   delInternalItem(item: any) {
     this.data.removeItemFromCart(item);
+    this.calculateTotalAmount();
     this.ngOnInit();
   }
 
@@ -77,15 +81,17 @@ export class CartComponent implements OnInit {
     let qty = event.target.value;
     this.data.updateQty(id, qty);
     this.calculateTotalAmount();
-    console.log(this.cartList.length);
   }
 
   calculateTotalAmount() {
     this.totalAmount = 0;
+    this.cartCounter = 0;
     for (var i = 0; i < this.cartList.length; i++) {
       const price = parseFloat(this.cartList[i].price.toFixed(2));
       const quantity = parseFloat(this.cartList[i].quantity);
       this.totalAmount += price * quantity;
+      this.cartCounter += quantity;
     }
+    this.data.updateCartCounter(this.cartCounter);
   }
 }

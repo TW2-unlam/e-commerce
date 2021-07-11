@@ -16,8 +16,6 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   loggedUserData: any = {};
-  // loggedUserName: string = '';
-  // isLoggedIn: boolean = false;
   cartCounter: any = 0;
   username: string = '';
   isLogged: boolean = false;
@@ -26,7 +24,6 @@ export class HeaderComponent implements OnInit {
     this.data.loggedUsername.subscribe((user) => (this.username = user));
     this.data.isLogged.subscribe((state) => (this.isLogged = state));
     this.getLoggedUserName();
-
     this.data.cartCounter.subscribe((number) => (this.cartCounter = number));
   }
 
@@ -71,7 +68,6 @@ export class HeaderComponent implements OnInit {
         break;
       }
       default: {
-        //statements;
         break;
       }
     }

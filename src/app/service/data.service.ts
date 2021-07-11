@@ -30,6 +30,7 @@ export class DataService {
 
   addToCart(item: any) {
     let result = '';
+    this.updateCartCounter(this.cartCounterSource.getValue() + 1);
     const cartArray: any[] = this.internalCartList.getValue();
     if (cartArray.length > 0) {
       let forceQuit = false;
@@ -60,7 +61,6 @@ export class DataService {
       ...internalList,
     ]);
 
-    this.updateCartCounter();
     return 'Producto agregado al carrito';
   }
 
@@ -84,10 +84,9 @@ export class DataService {
     });
 
     this.internalCartList.next(cartArray);
-    this.updateCartCounter();
   }
 
-  updateCartCounter() {
-    this.cartCounterSource.next(this.internalCartList.getValue().length);
+  updateCartCounter(number: any) {
+    this.cartCounterSource.next(number);
   }
 }
