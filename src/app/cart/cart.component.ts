@@ -36,6 +36,8 @@ export class CartComponent implements OnInit {
     this.cartList = Object.values(this.internalCartList);
     if (this.cartList.length > 0) {
       this.cartHasData = true;
+    } else {
+      this.cartHasData = false;
     }
     this.calculateTotalAmount();
   }
