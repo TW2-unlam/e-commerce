@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class DataService {
-  private userNameSource = new BehaviorSubject<string>('default message');
+  private userNameSource = new BehaviorSubject<string>('');
   loggedUsername = this.userNameSource.asObservable();
 
   private isLoggedSource = new BehaviorSubject<boolean>(false);

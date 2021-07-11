@@ -16,8 +16,8 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   loggedUserData: any = {};
-  loggedUserName: string = '';
-  isLoggedIn: boolean = false;
+  // loggedUserName: string = '';
+  // isLoggedIn: boolean = false;
   cartCounter: any = 0;
   username: string = '';
   isLogged: boolean = false;
@@ -25,8 +25,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.data.loggedUsername.subscribe((user) => (this.username = user));
     this.data.isLogged.subscribe((state) => (this.isLogged = state));
+    this.getLoggedUserName();
 
-    this.loggedUserName = this.getLoggedUserName();
     this.data.cartCounter.subscribe((number) => (this.cartCounter = number));
   }
 
@@ -35,8 +35,10 @@ export class HeaderComponent implements OnInit {
       localStorage.getItem('loggedUser') || '{}'
     );
     if (this.loggedUserData.user) {
-      this.isLoggedIn = true;
-      return this.loggedUserData.user.name ? this.loggedUserData.user.name : '';
+      this.data.changeLoggedUsername(
+        this.loggedUserData.user.name ? this.loggedUserData.user.name : ''
+      );
+      this.data.setIsLogged(true);
     }
   }
 
