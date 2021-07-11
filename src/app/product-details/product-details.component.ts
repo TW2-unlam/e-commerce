@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductDetailsComponent implements OnInit {
   gameId: String = '';
   gameDetail: any = {};
+  isLogged: boolean = false;
 
   constructor(
     public restApi: RestApiService,
@@ -22,6 +23,7 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.data.isLogged.subscribe((state) => (this.isLogged = state));
     this.activatedRoute.params.subscribe((params) => {
       this.gameId = params['id'];
     });
@@ -67,7 +69,15 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addInternalItem(item: any) {
-    const result = this.data.addToCart([item]);
-    this.showToastNotification('success', result);
+    if (this.isLogged) {
+      const result = this.data.addToCart([item]);
+      this.showToastNotification('success', result);
+    } else {
+      this.showToastNotification(
+        'info',
+        'Necesita estar logueado para agregar productos al carrito'
+      );
+      this.router.navigate(['/login']);
+    }
   }
 }

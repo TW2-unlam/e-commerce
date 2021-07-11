@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class HomeComponent implements OnInit {
   Product: any = [];
   message: string = '';
+  isLogged: boolean = false;
 
   constructor(
     public restApi: RestApiService,
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.data.isLogged.subscribe((state) => (this.isLogged = state));
     this.loadProducts();
   }
 
@@ -66,9 +68,17 @@ export class HomeComponent implements OnInit {
   }
 
   addInternalItem(id: any) {
-    const itemIndex = this.Product.findIndex((item: any) => item._id === id);
-    const result = this.data.addToCart([this.Product[itemIndex]]);
-    this.showToastNotification('success', result);
+    if (this.isLogged) {
+      const itemIndex = this.Product.findIndex((item: any) => item._id === id);
+      const result = this.data.addToCart([this.Product[itemIndex]]);
+      this.showToastNotification('success', result);
+    } else {
+      this.showToastNotification(
+        'info',
+        'Necesita estar logueado para agregar productos al carrito'
+      );
+      this.router.navigate(['/login']);
+    }
   }
 
   onEvent(event: any) {

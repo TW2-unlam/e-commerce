@@ -12,6 +12,7 @@ export class CartComponent implements OnInit {
   internalCartList: any = [];
   cartList: any = [];
   totalAmount: any = 0;
+  isLogged: boolean = false;
 
   constructor(
     protected router: Router,
@@ -20,7 +21,8 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (!localStorage.getItem('loggedUser')) {
+    this.data.isLogged.subscribe((state) => (this.isLogged = state));
+    if (!this.isLogged) {
       this.showToastNotification(
         'info',
         'Necesita estar logueado para acceder al carrito'
