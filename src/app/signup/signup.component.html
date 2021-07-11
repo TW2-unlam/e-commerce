@@ -4,24 +4,29 @@
       <div class="card card-signin m-3 background">
         <div class="card-body">
           <h5 class="card-title text-center">Sign Up</h5>
-          <form (ngSubmit)="SignUp()"
-          class="form-signin"
-          [formGroup]="formGroup">
+          <form
+            (ngSubmit)="SignUp()"
+            class="form-signin"
+            [formGroup]="formGroup"
+            ngNativeValidate
+          >
             <div class="form-label-group mb-3">
               <input
                 type="email"
                 class="form-control p-1 fondoInput"
                 placeholder="Email"
                 formControlName="email"
+                required
               />
             </div>
-            
+
             <div class="form-label-group mb-3">
               <input
                 type="text"
                 class="form-control p-1 fondoInput"
                 placeholder="Name"
                 formControlName="name"
+                required
               />
             </div>
             <div class="form-label-group mb-3">
@@ -30,6 +35,7 @@
                 class="form-control p-1 fondoInput"
                 placeholder="Surname"
                 formControlName="family_name"
+                required
               />
             </div>
             <div class="form-label-group mb-3">
@@ -38,6 +44,7 @@
                 class="form-control p-1 fondoInput"
                 placeholder="Address"
                 formControlName="address"
+                required
               />
             </div>
             <div class="form-label-group mb-3">
@@ -46,6 +53,7 @@
                 class="form-control p-1 fondoInput"
                 placeholder="Password"
                 formControlName="password"
+                required
               />
             </div>
             <div class="text-center">
