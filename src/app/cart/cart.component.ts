@@ -13,6 +13,7 @@ export class CartComponent implements OnInit {
   cartList: any = [];
   totalAmount: any = 0;
   isLogged: boolean = false;
+  cartHasData: boolean = false;
 
   constructor(
     protected router: Router,
@@ -33,6 +34,9 @@ export class CartComponent implements OnInit {
 
     // Refactor por pipe
     this.cartList = Object.values(this.internalCartList);
+    if (this.cartList.length > 0) {
+      this.cartHasData = true;
+    }
     this.calculateTotalAmount();
   }
 
@@ -71,6 +75,7 @@ export class CartComponent implements OnInit {
     let qty = event.target.value;
     this.data.updateQty(id, qty);
     this.calculateTotalAmount();
+    console.log(this.cartList.length);
   }
 
   calculateTotalAmount() {
