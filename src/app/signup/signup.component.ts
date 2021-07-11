@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from '../service/auth-service.service';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,34 +14,8 @@ export class SignupComponent implements OnInit {
   constructor(
     protected router: Router,
     private authService: AuthServiceService,
-    private toastr: ToastrService
+    private data: DataService
   ) {}
-
-  showToastNotification(type: string, message: string) {
-    // Passed to ToastrService.success/error/warning/info/show()
-    switch (type) {
-      case 'success': {
-        this.toastr.success(message, 'Success');
-        break;
-      }
-      case 'error': {
-        this.toastr.error(message, 'Error');
-        break;
-      }
-      case 'warning': {
-        this.toastr.warning(message, 'Warning');
-        break;
-      }
-      case 'info': {
-        this.toastr.info(message, 'Info');
-        break;
-      }
-      default: {
-        //statements;
-        break;
-      }
-    }
-  }
 
   ngOnInit(): void {
     this.initForm();
@@ -60,13 +34,13 @@ export class SignupComponent implements OnInit {
     if (this.formGroup.valid) {
       this.authService.signup(this.formGroup.value).subscribe((result) => {
         if (result.bienvenido) {
-          this.showToastNotification(
+          this.data.showToastNotification(
             'success',
             'Le llegará un email para que valide su cuenta'
           );
           this.router.navigate(['/']);
         } else {
-          this.showToastNotification('error', result.message);
+          this.data.showToastNotification('error', result.message);
         }
       });
     }

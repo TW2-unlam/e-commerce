@@ -4,7 +4,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../service/auth-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
 import { DataService } from '../service/data.service';
 
 @Component({
@@ -22,46 +21,15 @@ export class LoginComponent implements OnInit {
     private authService: AuthServiceService,
     private modal: NgbModal,
     private spinner: NgxSpinnerService,
-    private toastr: ToastrService,
     private data: DataService
   ) {}
-
-  showToastNotification(type: string, message: string) {
-    // Passed to ToastrService.success/error/warning/info/show()
-    switch (type) {
-      case 'success': {
-        this.toastr.success(message, 'Success');
-        break;
-      }
-      case 'error': {
-        this.toastr.error(message, 'Error');
-        break;
-      }
-      case 'warning': {
-        this.toastr.warning(message, 'Warning');
-        break;
-      }
-      case 'info': {
-        this.toastr.info(message, 'Info');
-        break;
-      }
-      case 'show': {
-        this.toastr.show(message, 'Info');
-        break;
-      }
-      default: {
-        //statements;
-        break;
-      }
-    }
-  }
 
   ngOnInit(): void {
     this.data.isLogged.subscribe((state) => (this.isLogged = state));
     this.data.loggedUsername.subscribe((user) => (this.loggedUsername = user));
 
     if (this.isLogged) {
-      this.showToastNotification('warning', 'Ya se encuentra logueado');
+      this.data.showToastNotification('warning', 'Ya se encuentra logueado');
       this.router.navigate(['/']);
     }
     this.initForm();
@@ -82,12 +50,12 @@ export class LoginComponent implements OnInit {
           this.data.changeLoggedUsername(result.user.name);
           this.data.setIsLogged(true);
           localStorage.setItem('loggedUser', JSON.stringify(result));
-          this.showToastNotification('success', 'Login exitoso');
+          this.data.showToastNotification('success', 'Login exitoso');
           this.showSpinner(false);
           this.router.navigate(['/']);
         } else {
           setTimeout(() => this.spinner.hide(), 5000);
-          this.showToastNotification('error', result.message);
+          this.data.showToastNotification('error', result.message);
           this.spinner.hide();
         }
       });
@@ -104,7 +72,6 @@ export class LoginComponent implements OnInit {
         fullScreen: true,
       });
     } else {
-      // setTimeout(() => this.spinner.hide(), 2000);
       this.spinner.hide();
     }
   }

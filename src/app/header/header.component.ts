@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { DataService } from '../service/data.service';
 
 @Component({
@@ -9,11 +8,7 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(
-    protected router: Router,
-    private toastr: ToastrService,
-    private data: DataService
-  ) {}
+  constructor(protected router: Router, private data: DataService) {}
 
   loggedUserData: any = {};
   cartCounter: any = 0;
@@ -44,32 +39,7 @@ export class HeaderComponent implements OnInit {
       this.data.setIsLogged(false);
       localStorage.clear();
       this.router.navigate(['/']);
-      this.showToastNotification('success', 'Deslogueo exitoso');
-    }
-  }
-
-  showToastNotification(type: string, message: string) {
-    // Passed to ToastrService.success/error/warning/info/show()
-    switch (type) {
-      case 'success': {
-        this.toastr.success(message, 'Success');
-        break;
-      }
-      case 'error': {
-        this.toastr.error(message, 'Error');
-        break;
-      }
-      case 'warning': {
-        this.toastr.warning(message, 'Warning');
-        break;
-      }
-      case 'info': {
-        this.toastr.info(message, 'Info');
-        break;
-      }
-      default: {
-        break;
-      }
+      this.data.showToastNotification('success', 'Deslogueo exitoso');
     }
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { DataService } from '../service/data.service';
 
 @Component({
@@ -16,17 +15,13 @@ export class CartComponent implements OnInit {
   cartHasData: boolean = false;
   cartCounter: any = 0;
 
-  constructor(
-    protected router: Router,
-    private toastr: ToastrService,
-    private data: DataService
-  ) {}
+  constructor(protected router: Router, private data: DataService) {}
 
   ngOnInit(): void {
     this.data.isLogged.subscribe((state) => (this.isLogged = state));
     this.data.cartCounter.subscribe((number) => (this.cartCounter = number));
     if (!this.isLogged) {
-      this.showToastNotification(
+      this.data.showToastNotification(
         'info',
         'Necesita estar logueado para acceder al carrito'
       );
@@ -43,32 +38,6 @@ export class CartComponent implements OnInit {
     }
 
     this.calculateTotalAmount();
-  }
-
-  showToastNotification(type: string, message: string) {
-    // Passed to ToastrService.success/error/warning/info/show()
-    switch (type) {
-      case 'success': {
-        this.toastr.success(message, 'Success');
-        break;
-      }
-      case 'error': {
-        this.toastr.error(message, 'Error');
-        break;
-      }
-      case 'warning': {
-        this.toastr.warning(message, 'Warning');
-        break;
-      }
-      case 'info': {
-        this.toastr.info(message, 'Info');
-        break;
-      }
-      default: {
-        //statements;
-        break;
-      }
-    }
   }
 
   delInternalItem(item: any) {

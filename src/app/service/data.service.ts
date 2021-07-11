@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Result } from 'postcss';
 import { BehaviorSubject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,37 @@ export class DataService {
   private internalCartList = new BehaviorSubject<any[]>([]);
   cartList = this.internalCartList.asObservable();
 
-  constructor() {}
+  constructor(private toastr: ToastrService) {}
+
+  showToastNotification(type: string, message: string) {
+    // Passed to ToastrService.success/error/warning/info/show()
+    switch (type) {
+      case 'success': {
+        this.toastr.success(message, 'Success');
+        break;
+      }
+      case 'error': {
+        this.toastr.error(message, 'Error');
+        break;
+      }
+      case 'warning': {
+        this.toastr.warning(message, 'Warning');
+        break;
+      }
+      case 'info': {
+        this.toastr.info(message, 'Info');
+        break;
+      }
+      case 'show': {
+        this.toastr.show(message, 'Info');
+        break;
+      }
+      default: {
+        //statements;
+        break;
+      }
+    }
+  }
 
   changeLoggedUsername(username: string) {
     this.userNameSource.next(username);
