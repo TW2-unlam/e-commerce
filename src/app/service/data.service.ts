@@ -6,7 +6,12 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class DataService {
-  private messageSource = new BehaviorSubject<string>('default message');
+  private userNameSource = new BehaviorSubject<string>('default message');
+  loggedUsername = this.userNameSource.asObservable();
+
+  private isLoggedSource = new BehaviorSubject<boolean>(false);
+  isLogged = this.isLoggedSource.asObservable();
+
   private cartCounterSource = new BehaviorSubject<number>(0);
   cartCounter = this.cartCounterSource.asObservable();
 
@@ -14,6 +19,14 @@ export class DataService {
   cartList = this.internalCartList.asObservable();
 
   constructor() {}
+
+  changeLoggedUsername(username: string) {
+    this.userNameSource.next(username);
+  }
+
+  setIsLogged(value: boolean) {
+    this.isLoggedSource.next(value);
+  }
 
   addToCart(item: any) {
     let result = '';

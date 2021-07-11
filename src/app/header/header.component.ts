@@ -19,8 +19,13 @@ export class HeaderComponent implements OnInit {
   loggedUserName: string = '';
   isLoggedIn: boolean = false;
   cartCounter: any = 0;
+  username: string = '';
+  isLogged: boolean = false;
 
   ngOnInit(): void {
+    this.data.loggedUsername.subscribe((user) => (this.username = user));
+    this.data.isLogged.subscribe((state) => (this.isLogged = state));
+
     this.loggedUserName = this.getLoggedUserName();
     this.data.cartCounter.subscribe((number) => (this.cartCounter = number));
   }
@@ -37,6 +42,7 @@ export class HeaderComponent implements OnInit {
 
   deleteLocalStorage() {
     if (confirm('¿Esta seguro? ')) {
+      this.data.setIsLogged(false);
       localStorage.clear();
       this.router.navigate(['/']);
       this.showToastNotification('success', 'Deslogueo exitoso');

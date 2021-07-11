@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthServiceService } from '../service/auth-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
   formGroup!: FormGroup;
+  loggedUsername: string = '';
+  isLogged: boolean = false;
 
   constructor(
     protected router: Router,
     private authService: AuthServiceService,
     private modal: NgbModal,
     private spinner: NgxSpinnerService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private data: DataService
   ) {}
 
   showToastNotification(type: string, message: string) {
@@ -53,7 +57,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem('loggedUser')) {
+    this.data.isLogged.subscribe((state) => (this.isLogged = state));
+    this.data.loggedUsername.subscribe((user) => (this.loggedUsername = user));
+
+    if (this.isLogged) {
       this.showToastNotification('warning', 'Ya se encuentra logueado');
       this.router.navigate(['/']);
     }
@@ -72,6 +79,8 @@ export class LoginComponent implements OnInit {
     if (this.formGroup.valid) {
       this.authService.login(this.formGroup.value).subscribe((result) => {
         if (result.jwt) {
+          this.data.changeLoggedUsername(result.user.name);
+          this.data.setIsLogged(true);
           localStorage.setItem('loggedUser', JSON.stringify(result));
           this.showToastNotification('success', 'Login exitoso');
           this.showSpinner(false);
