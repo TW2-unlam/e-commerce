@@ -36,7 +36,9 @@ body {
   font-size: var(--normal-font-size);
   transition: 0.5s;
 }
-
+.borde{
+  border-bottom: 1px white solid;
+}
 a {
   text-decoration: none;
   color: white;

@@ -1,36 +1,51 @@
-.carrito {
-  margin-left: 15%;
-  margin-top: 5%;
-}
-.background {
-  background-color: #02000e;
-  box-shadow: 6px 5px 10px 2px rgb(21 12 73 / 100%);
-  color: white;
-}
-
-.carro {
-  margin-left: 20%;
-}
 
 .backg {
-  background-color: #b6b6c2;
+  background-color: black;
+  color: white;
+  font-family:arial;
+  border: none;
+  
 }
-
+.contenido{
+  margin-top: 50px;
+ 
+}
 .game-thumbnail {
   width: 150px;
   height: 100px;
 }
+.total{
+  font-size: 20px;
+  text-align: end;
 
+}
+.boton{
+  background-color: rgb(29, 29, 29);
+  color:white;
+  border-color: rgb(126, 126, 126);
+  border-radius: 0.5rem;
+  font-size: 18px;
+  width: 135px;
+}
 .table .thead {
   display: table;
   width: 100%;
-  background-color: lightblue;
   position: fixed;
+  
+  
 }
 .table {
   table-layout: fixed;
+  font-size: 20px;
+  font-family:arial;
+ 
 }
 
 .white {
   color: white;
+  margin-top: 5%;
+  margin-left: 25%;
+  text-align: center;
+  font-family:arial;
+ 
 }

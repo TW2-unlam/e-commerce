@@ -1,9 +1,9 @@
-<div class="row carrito">
-  <div class="col-12 col-md-6 mt-3">
-    <div class="table-responsive">
-      <div *ngIf="cartHasData; else other_content">
-        <table class="table table-striped" style="width: 100%">
-          <thead class="backg">
+<div class="container contenido">
+<div class="row">
+<div class=" col-9"> 
+   <div class="table-responsive tabla" *ngIf="cartHasData; else other_content">
+        <table class="table backg table-hover">
+          <thead>
             <tr>
               <th scope="col" class="text-center" style="width: 10rem">
                 Imagen
@@ -16,7 +16,7 @@
               <th scope="col" class="text-center">#</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             <ng-container *ngFor="let row of cartList">
               <!-- <div class="game"> -->
               <tr class="text-light">
@@ -30,22 +30,21 @@
                 <td class="text-center">{{ row.name }}</td>
                 <td class="text-center">
                   <ng-container *ngFor="let row of row.genres">
-                    <td class="text-center">
-                      {{ row.name }}<span>&nbsp;</span>
-                    </td>
+                    {{ row.name }}
                   </ng-container>
                 </td>
-                <td class="text-center">{{ row.price }}</td>
+                <td class="text-center">$ {{ row.price }}</td>
                 <td class="text-center">
                   <input
                     type="number"
+                    class="backg"
                     style="width: 50px"
                     value="{{ row.quantity }}"
                     min="0"
                     (change)="updateQty(row._id, $event)"
                   />
                 </td>
-                <td class="text-center">{{ row.price * row.quantity }}</td>
+                <td class="text-center">$ {{ row.price * row.quantity }}</td>
                 <td class="text-center">
                   <a
                     data-bs-toggle="tooltip"
@@ -60,25 +59,25 @@
           </tbody>
         </table>
       </div>
-
-      <ng-template #other_content>
-        <h3 class="white">El carrito se encuentra vacío</h3>
-      </ng-template>
-    </div>
   </div>
-
-  <div *ngIf="cartHasData" class="col-3 col-md-6 mt-3">
-    <div class="col-3 col-md-6 mt-3">
-      <form class="carro" method="post">
-        <div class="card background" style="width: 10rem">
-          <div class="card-body text-right">
-            <h3 class="card-text">Total: ${{ totalAmount }}</h3>
-            <a routerLink="/buy" routerLinkActive="active" class="btn btn-dark"
-              >Comprar</a
-            >
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
+  <div class="col-3">
+        <div *ngIf="cartHasData">
+        <form method="post">
+            <div class="backg total text-right text-light">
+               <h2 >Total: ${{ totalAmount }}</h2>
+                <a routerLink="/buy" routerLinkActive="active" class="btn boton btn-dark"
+                  >COMPRAR</a >
+             
+            </div>
+          </form>
+       </div>
+  </div>  
 </div>
+</div>
+
+<div class="col-12">
+    <ng-template #other_content>
+      <h3 class="white">El carrito se encuentra vacío</h3>
+    </ng-template>
+
+  </div>

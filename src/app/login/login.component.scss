@@ -1,30 +1,41 @@
 .background {
-  background-color: #252525;
+  background-color: rgb(12, 12, 12);
   color: white;
+  width: 500px;
+  font-size: 18px;
+  
+  border-radius: 1rem;
+  
+}
+.boton{
+  background-color: black;
+  color:white;
+  border-color: rgb(126, 126, 126);
+  border-radius: 0.5rem;
+  font-size: 18px;
+  width: 150px;
 }
 .registrarse {
   text-decoration: none;
-  color: #8e86b4;
+  color: #9292ff;
+  margin-top: 1em;
 }
 .fondoInput {
   background-color: transparent;
-  border: solid rgb(54, 54, 54);
-  color: white;
+   color: white;
+   font-size: 18px;
 }
-#login .card-signin {
-  border: 0;
-  border-radius: 1rem;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-}
+
 
 #login .card-signin .card-title {
   margin-bottom: 2rem;
   font-weight: 400;
-  font-size: 1.5rem;
+  font-size: 26px;
 }
 
 #login .card-signin .card-body {
   padding: 2rem;
+  
 }
 
 #login .form-signin {
@@ -34,12 +45,14 @@
 #login .form-label-group {
   position: relative;
   margin-bottom: 1rem;
+  margin-top: 1.5em;
 }
 
 #login .form-label-group input {
   border: 0;
   border-radius: 0;
   border-bottom: 1px #aaadb3 solid;
+ 
 }
 
 #login .btn-primary {
@@ -48,4 +61,5 @@
   background-color: var(--darkgray-color);
   height: 40px;
   width: 90px;
+ 
 }

@@ -1,9 +1,9 @@
-<div id="login" class="mt-2">
+<div id="login">
   <div class="row">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-      <div class="card card-signin m-3 background">
+      <div class="card card-signin m-4 background">
         <div class="card-body">
-          <h5 class="card-title text-center">Sign Up</h5>
+          <h5 class="card-title text-center">Registrarse</h5>
           <form
             (ngSubmit)="SignUp()"
             class="form-signin"
@@ -24,7 +24,7 @@
               <input
                 type="text"
                 class="form-control p-1 fondoInput"
-                placeholder="Name"
+                placeholder="Nombre"
                 formControlName="name"
                 required
               />
@@ -33,7 +33,7 @@
               <input
                 type="text"
                 class="form-control p-1 fondoInput"
-                placeholder="Surname"
+                placeholder="Apellido"
                 formControlName="family_name"
                 required
               />
@@ -42,7 +42,7 @@
               <input
                 type="text"
                 class="form-control p-1 fondoInput"
-                placeholder="Address"
+                placeholder="Direccion"
                 formControlName="address"
                 required
               />
@@ -51,13 +51,13 @@
               <input
                 type="password"
                 class="form-control p-1 fondoInput"
-                placeholder="Password"
+                placeholder="Contraseña"
                 formControlName="password"
                 required
               />
             </div>
             <div class="text-center">
-              <button class="btn btn-dark text-uppercase mt-3" type="submit">
+              <button class="btn boton text-uppercase mt-3" type="submit">
                 Sign Up
               </button>
             </div>
