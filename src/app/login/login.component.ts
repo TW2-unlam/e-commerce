@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit {
   }
 
   Login() {
-    this.showSpinner(true);
     if (this.formGroup.valid) {
+      this.showSpinner(true);
       this.authService.login(this.formGroup.value).subscribe((result) => {
         if (result.jwt) {
           this.data.changeLoggedUsername(result.user.name);

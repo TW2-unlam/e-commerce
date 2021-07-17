@@ -9,6 +9,7 @@
             (ngSubmit)="Login()"
             class="form-signin"
             [formGroup]="formGroup"
+            ngNativeValidate
           >
             <div class="form-label-group mb-3">
               <input
@@ -16,6 +17,7 @@
                 class="form-control p-1 fondoInput"
                 placeholder="Email"
                 formControlName="email"
+                required
               />
             </div>
             <div class="form-label-group mb-3">
@@ -24,6 +26,7 @@
                 class="form-control p-1 fondoInput"
                 placeholder="Contraseña"
                 formControlName="password"
+                required
               />
             </div>
             <a
